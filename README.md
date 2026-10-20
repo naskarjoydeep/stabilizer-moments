@@ -1,4 +1,4 @@
-# Numerical implementation: *Stabilizer Rényi moments beyond entanglement in two dimensions*
+# Numerical implementation: *Stabilizer Rényi moments beyond entanglement*
 
 V. Jejjala and J. Naskar.
 
@@ -43,21 +43,21 @@ small determinants.
 | Result in the paper | Command | Saved output | Time |
 |---|---|---|---|
 | Eq. (3.5): replica subgroup $K_\alpha$ and its annihilator | `clock.py replica` | `clock.txt` | < 1 s |
-| Section 3.3 and appendix A.4: rotated Ising, eqs. (3.7), (3.8), (A.14)–(A.17); fit 0.36 over r = 32–256 and local exponent 0.255 at r = 10⁵ (α = 4) | `ising.py rotated` | `ising.txt` | < 1 s |
+| Section 3.3 and appendix A.4: rotated Ising, eqs. (3.7), (3.8), (A.15)–(A.18); fit 0.36 over r = 32–256 and local exponent 0.255 at r = 10⁵ (α = 4) | `ising.py rotated` | `ising.txt` | < 1 s |
 | Table 1: charged coefficients $\mathcal C_\alpha(\ell)$, eq. (5.2) | `ising.py charged-coefficients` | `records.json` (`charged_coefficients`) | ~7 min |
-| Section 5.1: the < 6% spread of $\ell^{\alpha/2-2}\mathcal C_\alpha$, $U_\alpha(16)/16$, $T_2(12)$ ≈ 60 and $T_5(12)$ ≈ 1.4, the bound (5.8) reaching e at ℓ ≈ 92 and 8364 | `ising.py diagnostics` | `ising.txt` | < 1 s |
-| Figure 1 and section 5.2: $\mathcal C_2(\ell)$ and $\ell A_1(\ell)$ for ℓ = 4–128, eqs. (5.6), (5.7), (A.11)–(A.13); $\mathcal C_2(128)$ = 0.2357979, the fits 0.24995, 0.24991, 0.24988, $\ell A_1(128)$ = 0.0275335, agreement with direct sums within 2×10⁻¹⁴, the precision check; the coupling $b_\ell$ of eq. (5.11) | `pfaffian.py --verify --check-precision` | `pfaffian.txt` | ~15 min |
-| Section 5.2: $\ell A_1$ by direct enumeration, eq. (A.8): 0.0270122 (α = 2) and 0.00773 (α = 3) at ℓ = 16 | `ising.py neutral` | `records.json` (`neutral`) | hours at ℓ = 16; see below |
-| Appendices A.1–A.2: identities (A.3)–(A.4), the ℓ = 2 overlaps 1, 1, 1/2, 1/2, the inverse sums (A.7), the endpoint identity (A.10) at real α, and a direct two-block check of eq. (A.8) | `ising.py identities` | `ising.txt` | ~2 s |
-| Appendix B: the projector (5.9), the stabilizers, eigenvalues and junction weights 1/16, 5/32, 3/16, the mirror overlaps, the slit map (B.4), eq. (B.6) and the expansion (B.7) | `ising.py junction` | `ising.txt` | < 1 s |
+| Section 5.3: the < 6% spread of $\ell^{\alpha/2-2}\mathcal C_\alpha$, $U_\alpha(16)/16$, $T_2(12)$ ≈ 60 and $T_5(12)$ ≈ 1.4, the bound (5.16) reaching e at ℓ ≈ 92 and 8364 | `ising.py diagnostics` | `ising.txt` | < 1 s |
+| Figure 1 and section 5.2: $\mathcal C_2(\ell)$ and $\ell A_1(\ell)$ for ℓ = 4–128, eqs. (5.6), (5.7), (A.12)–(A.14); $\mathcal C_2(128)$ = 0.2357979, the fits 0.24995, 0.24991, 0.24988, $\ell A_1(128)$ = 0.0275335, agreement with direct sums within 2×10⁻¹⁴, the precision check; the coupling $b_\ell$ of eq. (5.10) | `pfaffian.py --verify --check-precision` | `pfaffian.txt` | ~15 min |
+| Section 5.2: $\ell A_1$ by direct enumeration, eq. (A.9): 0.0270122 (α = 2) and 0.00773 (α = 3) at ℓ = 16 | `ising.py neutral` | `records.json` (`neutral`) | hours at ℓ = 16; see below |
+| Appendices A.1–A.2: identities (A.3)–(A.4), the ℓ = 2 overlaps 1, 1, 1/2, 1/2, the inverse sums (A.7), the endpoint identity (A.11) at real α, and a direct two-block check of eqs. (A.8)–(A.9) | `ising.py identities` | `ising.txt` | ~2 s |
+| Appendix B: the projector (5.8), the stabilizers, eigenvalues and junction weights 1/16, 5/32, 3/16, the mirror overlaps, the slit map (B.4), eq. (B.6) and the expansion (B.7) | `ising.py junction` | `ising.txt` | < 1 s |
 | Figure 2(a): length-two charged ratios | `ising.py length-two` | `ising.txt` | ~1 s |
 | Figure 2(b): one-site charged, neutral and full ratios | `ising.py sectors` | `records.json` (`sectors`), `ising.txt` | < 1 s |
 | Table 2 ($s_{\rm ch}$ column) and Figure 3: charged slopes, window sensitivities, intercepts | `clock.py fits` | `clock.txt` | ~40 s |
-| Section 5.3: neutral/all-charged fractions 12–21%, 24–32%, 38–45% | `clock.py fractions` | `clock.txt`, `records.json` (`sector_fractions`) | ~15 s |
-| Table 2 ($2\Delta_{\rm ref}$ and ratio columns for the clock chains, and the daggered L = 8 → 10 changes) and section 5.3: size sequences to L = 14, 12, 10 and the same-ring ratios | `clock.py finite-size` | `clock.txt` | about 1 h, dominated by ℤ₄ at L = 12; see below |
-| Section 5.3: Blume–Capel control (λ = 1.326, L = 12): forbidden weight 0.0597, powers 0.783, 1.067, 1.130 | `clock.py blume-capel` | `clock.txt`, `records.json` (`blume_capel`) | ~2 min |
-| Section 5.4 and Figure 4: single-interval slopes, intercepts 0.1267/0.1264, difference intercepts −3.0×10⁻⁴/−6.1×10⁻⁵ | `ising.py single-interval` | `ising.txt` | ~2 s |
-| Section 5.4: full-system constants, eq. (4.16), agreement within 0.7–2.9% | `ising.py full-system` | `ising.txt` | ~3 s |
+| Section 5.4: neutral/all-charged fractions 12–21%, 24–32%, 38–45% | `clock.py fractions` | `clock.txt`, `records.json` (`sector_fractions`) | ~15 s |
+| Table 2 ($2\Delta_{\rm ref}$ and ratio columns for the clock chains, and the daggered L = 8 → 10 changes) and section 5.4: size sequences to L = 14, 12, 10 and the same-ring ratios | `clock.py finite-size` | `clock.txt` | about 1 h, dominated by ℤ₄ at L = 12; see below |
+| Section 5.4: Blume–Capel control (λ = 1.326, L = 12): forbidden weight 0.0597, powers 0.783, 1.067, 1.130 | `clock.py blume-capel` | `clock.txt`, `records.json` (`blume_capel`) | ~2 min |
+| Section 5.5 and Figure 4: single-interval slopes, intercepts 0.1267/0.1264, difference intercepts −3.0×10⁻⁴/−6.1×10⁻⁵ | `ising.py single-interval` | `ising.txt` | ~2 s |
+| Section 5.5: full-system constants, eq. (4.16), agreement within 0.7–2.9% | `ising.py full-system` | `ising.txt` | ~3 s |
 | Section 6: $L_{\rm LR}$ = 0.0819, 0.1088, 0.1223, 0.1307 at η = 1/4, eq. (6.1) | `ising.py fixed-cross-ratio` | `records.json` (`fixed_cross_ratio`) | ~3 s |
 | Figures 1–4 | `make_figures.py` | `figures/*.pdf` | ~5 s |
 
@@ -105,7 +105,7 @@ check, `charged-coefficients`, `neutral` and `fixed-cross-ratio` take `--lengths
 * **Pfaffians.** `pfaffian.py` builds the skew moments (5.6) from centered, rescaled monomials
   $((u-c)/s)^i$ with $c=s=(\ell-1/2)/2$ and corrects each Pfaffian by $s^{N(2N-1)}$; raw
   monomials $u^i$ lose many digits from ℓ ≈ 32 on. Each size is computed at $80+2\ell$ decimal
-  digits. The neutral derivative in (A.13) is taken as a symmetric difference of
+  digits. The neutral derivative in (A.14) is taken as a symmetric difference of
   $\log\operatorname{Pf}$ with step $10^{-30}$.
 * **Cross-ratios.** Intervals of length ℓ starting at 0 and at $r$ on the infinite chain have
   $\eta=(\ell/r)^2$. On a ring of $L$ sites, single sites at separation $r$ have

@@ -1,4 +1,4 @@
-check of Pf M = Z_N^(2)[w], eq. (5.6), and of the tilted derivative, eq. (A.13)
+check of Pf M = Z_N^(2)[w], eq. (5.6), and of the tilted derivative, eq. (A.14)
   ell   rel. error neutral   rel. error charged   rel. error dbar
     1                  0.0                  0.0          1.07e-50
     2                  0.0             1.34e-51          5.35e-51
@@ -17,7 +17,7 @@ check of Pf M = Z_N^(2)[w], eq. (5.6), and of the tilted derivative, eq. (A.13)
 
 repeat with 40 more digits: C_2 and ell A_1 agree to at least 56 significant digits at every size
 
-direct enumeration (results/ising.json) minus Pfaffian, eq. (5.7):
+direct enumeration (results/records.json) minus Pfaffian, eq. (5.7):
   ell =  4:  C_2 -1.1e-16   T_2 -3.3e-16 (relative)   ell A_1 +1.0e-17
   ell =  8:  C_2 -2.8e-15   T_2 -2.0e-15 (relative)   ell A_1 +2.8e-17
   ell = 12:  C_2 -4.7e-15   T_2 -1.6e-14 (relative)   ell A_1 +2.9e-16

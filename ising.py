@@ -9,14 +9,14 @@ which are in pfaffian.py.
 Subcommands, in the order of the paper:
   rotated            section 3.3, appendix A.4: the rotated two-site moment
   charged-coefficients  Table 1: exact charged coefficients C_alpha(ell), eq. (5.2)
-  diagnostics        section 5.1 numbers derived from the Table 1 record
-  neutral            linear neutral coefficient A_1(ell), eq. (A.8), by direct enumeration
+  diagnostics        section 5.3 numbers derived from the Table 1 record
+  neutral            linear neutral coefficient A_1(ell), eq. (A.9), by direct enumeration
   identities         appendices A.1-A.2: Cauchy-ensemble identities, inverse sums, the
-                     weighted involution, and a two-block check of eq. (A.8)
+                     weighted involution, and a two-block check of eqs. (A.8)-(A.9)
   length-two         Figure 2(a): length-two charged ratios (also the Ising row of Table 2)
   sectors            Figure 2(b): one-site charged, neutral and full ratios
-  single-interval    section 5.4 and Figure 4
-  full-system        section 5.4: periodic-chain constants, eq. (4.16)
+  single-interval    section 5.5 and Figure 4
+  full-system        section 5.5: periodic-chain constants, eq. (4.16)
   fixed-cross-ratio  section 6: L_LR at eta = 1/4, eq. (6.1)
   junction           appendix B: linear algebra of the index-two orbifold junction
 
@@ -176,7 +176,7 @@ def kernel(ell):
 
 
 def neutral_coefficient(ell, alphas=(2, 3), batch_size=50000):
-    """Linear neutral coefficient A_1(ell) of eq. (A.8), plus the isolated quadratic response.
+    """Linear neutral coefficient A_1(ell) of eq. (A.9), plus the isolated quadratic response.
 
     The Schur-complement expansion reduces both to one-interval sums T, K = sum |D|^{2a} v and
     J = sum |D|^{2a} v^2, with v_IJ from eq. (A.7); the cost is binomial(2 ell, ell).
@@ -263,7 +263,7 @@ def cmd_diagnostics(args):
         print(f"  alpha = {alpha:>2}: max/min - 1 = {100 * (max(values) / min(values) - 1):.2f}%")
     if 12 in rows and all(f"T_{alpha}" in rows[12] for alpha in (2, 5)):
         print(f"\ntwelve-site sums: T_2(12) = {rows[12]['T_2']:.3f},  T_5(12) = {rows[12]['T_5']:.4f}")
-    print("\nlength at which the bound (5.8), (1 + m_z^(2 alpha))^ell, reaches e:")
+    print("\nlength at which the bound (5.16), (1 + m_z^(2 alpha))^ell, reaches e:")
     for alpha in (5, 10):
         print(f"  alpha = {alpha:>2}: {1 / math.log1p(M_Z ** (2 * alpha)):.1f}")
 
@@ -307,7 +307,7 @@ def _ensemble_errors(ell):
 
 
 def _involution_sums(ell, alpha):
-    """Full and endpoint-restricted sums of eq. (A.10), and the error of eq. (A.7)."""
+    """Full and endpoint-restricted sums of eq. (A.11), and the error of eq. (A.7)."""
     full = endpoint = 0.0; error = 0.0
     for size in range(1, ell + 1):
         for I in itertools.combinations(range(ell), size):
@@ -323,7 +323,7 @@ def _involution_sums(ell, alpha):
 
 
 def _two_block_check(ell=2, alpha=2, separations=(400, 800)):
-    """r^2 (neutral ratio - 1) for two blocks, against 2 alpha vbar^2 / pi^2 of eq. (A.8)."""
+    """r^2 (neutral ratio - 1) for two blocks, against 2 alpha vbar^2 / pi^2 of eq. (A.9)."""
     mp.mp.dps = 40
     def det(I, J):
         if not I:
@@ -362,7 +362,7 @@ def cmd_identities(args):
                 overlaps.append(value)
     print("  nonzero leading overlaps |C_IJ| at ell = 2: " + ", ".join(f"{v:.6f}" for v in sorted(overlaps, reverse=True)))
 
-    print("\nappendix A.2: inverse sums (A.7) and the endpoint identity (A.10)")
+    print("\nappendix A.2: inverse sums (A.7) and the endpoint identity (A.11)")
     print("  ell  alpha   max error (A.7)   full sum            endpoint-only sum   difference")
     for ell in (3, 4, 5):
         for alpha in (0.7, 2, 2.5, 3):
@@ -370,7 +370,7 @@ def cmd_identities(args):
             print(f"  {ell:>3}  {alpha:>5}   {error:15.1e}   {full:18.15f}  {endpoint:18.15f}  {full - endpoint:10.1e}")
 
     values, extrapolated, predicted = _two_block_check()
-    print("\nappendix A.2: two-block check of eq. (A.8) at ell = 2, alpha = 2")
+    print("\nappendix A.2: two-block check of eqs. (A.8)-(A.9) at ell = 2, alpha = 2")
     print(f"  r^2 (ratio - 1) at r = 400, 800: {mp.nstr(values[0], 10)}, {mp.nstr(values[1], 10)}")
     print(f"  extrapolated in 1/r^2: {mp.nstr(extrapolated, 10)};  2 alpha vbar^2/pi^2 = {mp.nstr(predicted, 10)}")
 
@@ -398,7 +398,7 @@ def c_yy(r):
 
 
 def rotated_minus_one(r, alpha):
-    """Eq. (A.14)."""
+    """Eq. (A.15)."""
     e, o, e0 = c_zz(r) / 2, c_xx(r) / 2, M_Z ** 2 / 2
     tp = 1 + 2 ** (1 - alpha) * M_Z ** (2 * alpha)
     return (2 * abs(e + o) ** (2 * alpha) + 2 * abs(e - o) ** (2 * alpha)
@@ -406,7 +406,7 @@ def rotated_minus_one(r, alpha):
 
 
 def unrotated_minus_one(r, alpha):
-    """Eq. (A.17)."""
+    """Eq. (A.18)."""
     return (abs(c_xx(r)) ** (2 * alpha) + abs(c_yy(r)) ** (2 * alpha)
             + abs(c_zz(r)) ** (2 * alpha) - M_Z ** (4 * alpha)) / (1 + M_Z ** (2 * alpha)) ** 2
 
@@ -433,7 +433,7 @@ def local_exponent(r, alpha, h=0.01):
 def cmd_rotated(args):
     a = args.alpha
     dev = max(abs(rotated_minus_one(r, al) / brute_force_minus_one(r, al) - 1) for r in (1, 2, 5, 10) for al in (2, 3, 4))
-    print(f"eq. (A.14) vs direct rotation of the two-site state: max relative deviation {dev:.1e}")
+    print(f"eq. (A.15) vs direct rotation of the two-site state: max relative deviation {dev:.1e}")
     print(f"C_xx(r) r^(1/4) at r = {R_MAX}: {c_xx(R_MAX) * R_MAX ** 0.25:.6f}   (A_sigma = {A_SIGMA:.6f})")
     e0 = M_Z ** 2 / 2
     tp = 1 + 2 ** (1 - a) * M_Z ** (2 * a)
@@ -445,7 +445,7 @@ def cmd_rotated(args):
     print(f"alpha = {a}: rotated exponent fitted over r = 32..256: {slope:.3f}   (asymptotic value 1/4)")
     for r in (100, 1_000, 10_000, 100_000, 300_000):
         print(f"  local exponent at r = {r:>7}: {local_exponent(r, a):.4f}")
-    print("unrotated state, eq. (A.17): (F-1)(1+m_z^(2a))^2 = A_sigma^(2a) eta^(a/4) + (2a m_z^(4a-2)/pi^2) eta + ...")
+    print("unrotated state, eq. (A.18): (F-1)(1+m_z^(2a))^2 = A_sigma^(2a) eta^(a/4) + (2a m_z^(4a-2)/pi^2) eta + ...")
     print("  alpha   charged coeff   neutral coeff   exact/two-term at r = 10^4   exponent min(alpha/4, 1)")
     r = 10_000; eta = 1.0 / r ** 2
     for al in (2, 3, 4, 5, 6):
@@ -640,11 +640,11 @@ def cmd_fixed_cross_ratio(args):
 
 
 def cmd_junction(args):
-    """Appendix B: the index-two orbifold junction, eqs. (5.9) and (B.2)-(B.7)."""
+    """Appendix B: the index-two orbifold junction, eqs. (5.8) and (B.2)-(B.7)."""
     eye2 = np.eye(2); X = np.array([[0, 1], [1, 0]]); Y = np.array([[0, -1j], [1j, 0]]); Z = np.diag([1, -1])
     k4 = lambda A: np.kron(np.kron(A, A), np.kron(A, A))
     Q = (k4(eye2) + k4(X) + k4(Y) + k4(Z)) / 4
-    print("eq. (5.9): Q_2 = (1 + X^4)(1 + Z^4)/4 error %.1e, Q^2 - Q error %.1e, rank %d"
+    print("eq. (5.8): Q_2 = (1 + X^4)(1 + Z^4)/4 error %.1e, Q^2 - Q error %.1e, rank %d"
           % (abs(Q - (k4(eye2) + k4(X)) @ (k4(eye2) + k4(Z)) / 4).max(), abs(Q @ Q - Q).max(), np.linalg.matrix_rank(Q)))
 
     P0 = 0.5 * np.array([[1, 0, 1, 0], [0, 1, 0, 1], [1, 0, 1, 0], [0, 1, 0, 1]])
@@ -703,12 +703,12 @@ def cmd_junction(args):
 
 def cmd_all(args):
     for title, command in (("identities: appendices A.1-A.2", cmd_identities),
-                           ("diagnostics: section 5.1 and Table 1", cmd_diagnostics),
+                           ("diagnostics: section 5.3 and Table 1", cmd_diagnostics),
                            ("rotated: section 3.3 and appendix A.4", cmd_rotated),
                            ("length-two: Figure 2(a)", cmd_length_two),
                            ("sectors: Figure 2(b)", cmd_sectors),
-                           ("single-interval: section 5.4 and Figure 4", cmd_single_interval),
-                           ("full-system: section 5.4, eq. (4.16)", cmd_full_system),
+                           ("single-interval: section 5.5 and Figure 4", cmd_single_interval),
+                           ("full-system: section 5.5, eq. (4.16)", cmd_full_system),
                            ("junction: appendix B", cmd_junction)):
         print(f"\n===== {title} =====\n", flush=True)
         command(args)

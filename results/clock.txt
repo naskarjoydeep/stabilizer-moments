@@ -23,7 +23,7 @@ charged-sector primary fit and predetermined window sensitivity
   Z5 FZ        slope = 0.2313 +- 0.0000; intercept = +0.0108 +- 0.0000   [pred slope 0.2286, intercept 0]  windows=[(0, 3)]  pts=3
                 individual h_ch: a=2: 0.4740 +- 0.0000, a=3: 0.7033 +- 0.0000, a=4: 0.9366 +- 0.0000
 
-===== fractions: section 5.3 =====
+===== fractions: section 5.4 =====
 
 d=3, L=12: neutral/all-charged at alpha=2 between 12% and 21%;  max charge leakage 2.9e-24
   exponents (alpha=2,3,4): fundamental 0.5283, 0.7918, 1.0557; all_charged 0.5283, 0.7918, 1.0557; neutral 0.9080, 0.9515, 0.9964; full 0.5805, 0.8137, 1.0484
@@ -32,12 +32,12 @@ d=4, L=10: neutral/all-charged at alpha=2 between 24% and 32%;  max charge leaka
 d=5, L=8: neutral/all-charged at alpha=2 between 38% and 45%;  max charge leakage 1.2e-22
   exponents (alpha=2,3,4): fundamental 0.4740, 0.7033, 0.9366; all_charged 0.5260, 0.7584, 0.9838; neutral 0.7683, 0.8325, 0.8972; full 0.5968, 0.7778, 0.9659
 
-===== blume-capel: section 5.3 =====
+===== blume-capel: section 5.4 =====
 
 lambda=1.326, L=12: forbidden (qutrit phase-charge) weight 0.0597, max parity-odd linear term 5.6e-20
   mean full-ratio powers (alpha=2,3,4): 0.783, 1.067, 1.130;  scaled gap 0.885, c_eff 0.506
 
-===== finite-size: section 5.3 =====
+===== finite-size: section 5.4 =====
 
   model      L  pts  win       slope       ring dim.         ratio
   Potts      8    3    1   0.2617( 0)   d=0.2620( 0)   0.9986( 0)

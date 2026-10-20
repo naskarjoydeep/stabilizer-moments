@@ -1,5 +1,5 @@
 """Index-two Ising coefficients for growing intervals from two Pfaffians: section 5.2,
-Figure 1, eqs. (5.6), (5.7), (5.11), (5.14) and (A.11)-(A.13).
+Figure 1, eqs. (5.6), (5.7), (5.10), (5.13) and (A.12)-(A.14).
 
     python3 pfaffian.py --verify --check-precision > results/pfaffian.txt     (~15 min)
     python3 pfaffian.py --lengths 4,8,16                                       (seconds)
@@ -9,7 +9,7 @@ At alpha = 2 the finite ensemble (5.3) is a Pfaffian of skew moments,
 so that
     U_2(ell) = (G_ell/sqrt(pi))^4 Pf M^(ell-1)[w_1] / Pf M^(ell)[w_0],   C_2 = A_sigma^4 U_2^2 / ell.
 The linear neutral coefficient is A_1 = 4 dbar^2 / ell^2, where dbar = d/dt log Pf M(t) at t = 0
-for the tilted weight w_0^4 exp[t(u - ell/2)], eq. (A.13); it is evaluated here as a symmetric
+for the tilted weight w_0^4 exp[t(u - ell/2)], eq. (A.14); it is evaluated here as a symmetric
 difference with step 1e-30.
 
 The moments use the centered, rescaled monomials q_i(u) = ((u-c)/s)^i with c = s = (ell-1/2)/2,
@@ -118,7 +118,7 @@ def agreeing_digits(x, y):
 
 def verify_small():
     """Pf against direct subset sums of eq. (5.3) at alpha = 2, and dbar against its subset mean."""
-    print("check of Pf M = Z_N^(2)[w], eq. (5.6), and of the tilted derivative, eq. (A.13)")
+    print("check of Pf M = Z_N^(2)[w], eq. (5.6), and of the tilted derivative, eq. (A.14)")
     print("  ell   rel. error neutral   rel. error charged   rel. error dbar")
     for ell in range(1, 6):
         mp.mp.dps = 50

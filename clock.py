@@ -1,4 +1,4 @@
-"""Clock chains and the Blume--Capel control: Table 2, Figure 3 and the section 5.3 numbers,
+"""Clock chains and the Blume--Capel control: Table 2, Figure 3 and the section 5.4 numbers,
 plus the replica-subgroup check of eq. (3.5).
 
     python3 clock.py all --output results/records.json > results/clock.txt     (~3 min)
@@ -7,11 +7,11 @@ plus the replica-subgroup check of eq. (3.5).
 Subcommands:
   replica       eq. (3.5): replica subgroup K_alpha and its annihilator, d = 2..5
   fits          Table 2 and Figure 3: charged slopes, window sensitivities and intercepts
-  fractions     section 5.3: neutral / all-charged fractions and sector exponents
-  finite-size   section 5.3: size sequences to L = 14, 12, 10 and same-ring ratios
-  blume-capel   section 5.3: the non-Weyl control at lambda = 1.326, L = 12
+  fractions     section 5.4: neutral / all-charged fractions and sector exponents
+  finite-size   section 5.4: size sequences to L = 14, 12, 10 and same-ring ratios
+  blume-capel   section 5.4: the non-Weyl control at lambda = 1.326, L = 12
 
-The Fateev--Zamolodchikov chains, eq. (5.15), are solved by exact diagonalization on periodic
+The Fateev--Zamolodchikov chains, eq. (5.17), are solved by exact diagonalization on periodic
 rings with a matrix-free Hamiltonian.  For a d-state site, X|j> = |j+1>, Z|j> = w^j|j>,
 W_u = prod X^a Z^b, the charge under prod X is q = sum b mod d, and Xi(u) = |Tr rho W_u|^2 / D.
 Single sites at separation r on a ring of L sites have eta = [l_c(1)/l_c(r)]^2 with chord length
@@ -229,7 +229,7 @@ def cmd_fractions(args):
 
 def cmd_finite_size(args):
     models = {3: ("Potts", 4 / 15), 4: ("Z4 FZ", 0.25), 5: ("Z5 FZ", 8 / 35)}
-    print("\n===== finite-size: section 5.3 =====\n")
+    print("\n===== finite-size: section 5.4 =====\n")
     print(f"  {'model':<8}{'L':>4}{'pts':>5}{'win':>5}{'slope':>12}{'ring dim.':>16}{'ratio':>14}")
     for block in args.sizes.split(";"):
         d, sizes = block.split(":"); d = int(d)
@@ -369,8 +369,8 @@ def cmd_all(args):
     record = {}
     for title, command, key in (("replica: eq. (3.5)", cmd_replica, None),
                                 ("fits: Table 2 and Figure 3", cmd_fits, None),
-                                ("fractions: section 5.3", cmd_fractions, "sector_fractions"),
-                                ("blume-capel: section 5.3", cmd_blume_capel, "blume_capel")):
+                                ("fractions: section 5.4", cmd_fractions, "sector_fractions"),
+                                ("blume-capel: section 5.4", cmd_blume_capel, "blume_capel")):
         print(f"\n===== {title} =====\n", flush=True)
         rows = command(args)
         if key:

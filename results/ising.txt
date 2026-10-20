@@ -11,7 +11,7 @@ appendix A.1: ensemble identities (A.3)-(A.4), maximum absolute error per term
     6       4.441e-16       4.441e-16
   nonzero leading overlaps |C_IJ| at ell = 2: 1.000000, 1.000000, 0.500000, 0.500000
 
-appendix A.2: inverse sums (A.7) and the endpoint identity (A.10)
+appendix A.2: inverse sums (A.7) and the endpoint identity (A.11)
   ell  alpha   max error (A.7)   full sum            endpoint-only sum   difference
     3    0.7           4.4e-16   -7.403356888035633  -7.403356888035634     8.9e-16
     3      2           4.4e-16   -0.944727521542677  -0.944727521542677     0.0e+00
@@ -26,11 +26,11 @@ appendix A.2: inverse sums (A.7) and the endpoint identity (A.10)
     5    2.5           5.3e-14   -1.084903781945060  -1.084903781945060     2.2e-16
     5      3           5.3e-14   -0.498017871912341  -0.498017871912341     1.7e-16
 
-appendix A.2: two-block check of eq. (A.8) at ell = 2, alpha = 2
+appendix A.2: two-block check of eqs. (A.8)-(A.9) at ell = 2, alpha = 2
   r^2 (ratio - 1) at r = 400, 800: 0.04654422325, 0.04654303134
   extrapolated in 1/r^2: 0.04654263404;  2 alpha vbar^2/pi^2 = 0.04654263404
 
-===== diagnostics: section 5.1 and Table 1 =====
+===== diagnostics: section 5.3 and Table 1 =====
 
 Table 1, C_alpha(ell):
   alpha          ell=4         ell=8        ell=12        ell=16
@@ -56,13 +56,13 @@ spread of ell^(alpha/2-2) C_alpha over ell = [4, 8, 12, 16]
 
 twelve-site sums: T_2(12) = 60.338,  T_5(12) = 1.3679
 
-length at which the bound (5.8), (1 + m_z^(2 alpha))^ell, reaches e:
+length at which the bound (5.16), (1 + m_z^(2 alpha))^ell, reaches e:
   alpha =  5: 92.0
   alpha = 10: 8364.2
 
 ===== rotated: section 3.3 and appendix A.4 =====
 
-eq. (A.14) vs direct rotation of the two-site state: max relative deviation 1.8e-12
+eq. (A.15) vs direct rotation of the two-site state: max relative deviation 1.8e-12
 C_xx(r) r^(1/4) at r = 400000: 0.645002   (A_sigma = 0.645002)
 alpha = 4: eq. (3.7) coefficient 8.011944e-04;  (F'-1) eta^(-1/4) at r = 300000: 8.104738e-04
 alpha = 4: rotated exponent fitted over r = 32..256: 0.362   (asymptotic value 1/4)
@@ -71,7 +71,7 @@ alpha = 4: rotated exponent fitted over r = 32..256: 0.362   (asymptotic value 1
   local exponent at r =   10000: 0.2652
   local exponent at r =  100000: 0.2549
   local exponent at r =  300000: 0.2529
-unrotated state, eq. (A.17): (F-1)(1+m_z^(2a))^2 = A_sigma^(2a) eta^(a/4) + (2a m_z^(4a-2)/pi^2) eta + ...
+unrotated state, eq. (A.18): (F-1)(1+m_z^(2a))^2 = A_sigma^(2a) eta^(a/4) + (2a m_z^(4a-2)/pi^2) eta + ...
   alpha   charged coeff   neutral coeff   exact/two-term at r = 10^4   exponent min(alpha/4, 1)
       2      1.7308e-01      2.6980e-02                       1.0000   0.5
       3      7.2006e-02      6.6474e-03                       1.0000   0.75
@@ -127,7 +127,7 @@ infinite critical Ising, l=1: charged / neutral-connected / total
     a=5:  charged  1.250 [2a*D_sigma=1.25]   neutral  1.000 [D_eps=1]   TOTAL  1.188 [min = 1.00]
     a=6:  charged  1.500 [2a*D_sigma=1.50]   neutral  1.000 [D_eps=1]   TOTAL  1.169 [min = 1.00]
 
-===== single-interval: section 5.4 and Figure 4 =====
+===== single-interval: section 5.5 and Figure 4 =====
 
 ell   1/(ell+1/2)   local slope J_{S_2}   local slope J_{hat M_2}
   2        0.4000               0.13905                   0.11871
@@ -139,7 +139,7 @@ J_{hat M_2} (stabilizer series): linear-fit intercept 0.1264, drift -0.0191   (c
 slope-difference intercept: all four points -2.98e-04, last three -6.10e-05
 T_2(12) = 60.338
 
-===== full-system: section 5.4, eq. (4.16) =====
+===== full-system: section 5.5, eq. (4.16) =====
 
   L= 6  M_2=1.501477  M_3=1.226062  M_4=1.000984  M_5=0.818167  M_6=0.677677
   L= 8  M_2=2.113453  M_3=1.725230  M_4=1.408968  M_5=1.150016  M_6=0.950855
@@ -156,7 +156,7 @@ T_2(12) = 60.338
 
 ===== junction: appendix B =====
 
-eq. (5.9): Q_2 = (1 + X^4)(1 + Z^4)/4 error 0.0e+00, Q^2 - Q error 0.0e+00, rank 4
+eq. (5.8): Q_2 = (1 + X^4)(1 + Z^4)/4 error 0.0e+00, Q^2 - Q error 0.0e+00, rank 4
 eq. (B.2): stabilizers G_P0 = [(1, 1, 1, 1), (1, -1, 1, -1), (-1, 1, -1, 1), (-1, -1, -1, -1)], G_P1 = [(1, 1, 1, 1), (-1, -1, -1, -1)]
 image sector (d1,d2)   eigenvalues of R_0 s R_1 s        oscillator ground weight
   (1, 1)               +1 +1 +1 -1                      0.062500
