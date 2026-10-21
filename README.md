@@ -1,10 +1,10 @@
 # Numerical implementation: *Stabilizer Rényi moments beyond entanglement*
 
-V. Jejjala and J. Naskar.
+V. Jejjala and J. Naskar, [arXiv:2610.27596](https://arxiv.org/abs/2610.27596) [quant-ph].
 
 This package contains the code behind every number, table and figure in the paper, and the
-saved output of each calculation. Equation, table, figure and section numbers refer to the
-submitted manuscript.
+saved output of each calculation. Equation, table, figure and section numbers refer to
+[arXiv:2610.27596v1](https://arxiv.org/abs/2610.27596v1).
 
 The calculations are exact finite computations: closed-form Cauchy sums, Pfaffians and Majorana
 determinants for the infinite critical Ising chain, and exact diagonalization of finite rings
@@ -140,3 +140,22 @@ Ising points of Figure 3 from the `length-two` section of `results/ising.txt`, F
 the `sectors` record in `results/records.json`, the clock points of Figure 3 from the `fits`
 section of `results/clock.txt`, the Blume–Capel points from the `blume_capel` record, and Figure 4 from the
 `single-interval` section of `results/ising.txt`.
+
+## How to cite
+
+If you use this code or its results, please cite the paper:
+
+> V. Jejjala and J. Naskar, *Stabilizer Rényi moments beyond entanglement*,
+> [arXiv:2610.27596](https://arxiv.org/abs/2610.27596) [quant-ph].
+
+```bibtex
+@article{Jejjala:2026lgm,
+    author = "Jejjala, Vishnu and Naskar, Joydeep",
+    title = "{Stabilizer R{\'e}nyi moments beyond entanglement}",
+    eprint = "2610.27596",
+    archivePrefix = "arXiv",
+    primaryClass = "quant-ph",
+    month = "10",
+    year = "2026"
+}
+```
